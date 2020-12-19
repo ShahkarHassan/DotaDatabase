@@ -4,3 +4,4 @@ dj-database-url==0.5.0
 Django==2.1.15
 whitenoise==5.2.0
 gunicorn==19.0.0
+django-heroku
