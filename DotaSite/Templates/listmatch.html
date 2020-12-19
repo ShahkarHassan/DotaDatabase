@@ -1,0 +1,40 @@
+{% extends "base_generic.html" %}
+{% block content %}
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOTA 2</title>
+</head>
+<body>
+
+
+
+<h1>List of Matches</h1>
+<table border="1" width="600">
+<tr>
+<td>MatchID</td>
+<td>Status</td>
+<td>GPM</td>
+<td>XPM</td>
+<td>Kills</td>
+<td>Deaths</td>
+<td>Assist</td>
+</tr>
+
+{% for match in allmatch %}
+<tr>
+<td>{{ match.match_id }}</td>
+<td>{{ match.match_status }}</td>
+<td>{{ match.match_gpm }}</td>
+<td>{{ match.match_xpm }}</td>
+<td>{{ match.match_kills }}</td>
+<td>{{ match.match_death }}</td>
+<td>{{ match.match_assist }}</td>
+</tr>
+{% endfor %}
+</table>
+
+
+</body>
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
+{% endblock %}
