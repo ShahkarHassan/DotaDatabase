@@ -23,3 +23,6 @@ urlpatterns = [
 urlpatterns += [
     path('', include('DotaSite.urls')),
 ]
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]

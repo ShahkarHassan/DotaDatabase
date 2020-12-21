@@ -1,5 +1,4 @@
-DROP schema Dota;
-CREATE DATABASE Dota;
+CREATE SCHEMA Dota;
 USE Dota ;
 
 CREATE TABLE dota_user( 
@@ -41,24 +40,32 @@ FOREIGN KEY (mmr_id) REFERENCES dota_gamer(gamer_id) ON UPDATE CASCADE ON DELETE
 CREATE TABLE dota_match( 
 match_ID INT PRIMARY KEY NOT NULL, 
 match_Status VARCHAR(15) NOT NULL, 
-match_GPM INT NOT NULL , 
-match_Kills INT NOT NULL,
-match_XPM INT NOT NULL,
-match_death INT NOT NULL,
-match_assist INT NOT NULL
+match_Duration VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE dota_tournament( 
 Tournament_ID INT PRIMARY KEY, 
 Tournament_name VARCHAR(100) NOT NULL, 
-Tournament_starting_timedate DATETIME NOT NULL, 
-Tournament_prize INT);
+Tournament_starting_timedate DATETIME NOT NULL,
+Tournament_end_timedate DATETIME NOT NULL, 
+Tournament_prize VARCHAR(100) NOT NULL);
 
-CREATE TABLE dota_gamer_match_tournament( 
+CREATE TABLE dota_gamer_match( 
 matchid INT PRIMARY KEY NOT NULL, 
 gamerid BIGINT NOT NULL, 
-tournamentid INT,
+match_GPM INT NOT NULL , 
+match_Kills INT NOT NULL,
+match_XPM INT NOT NULL,
+match_death INT NOT NULL,
+match_assist INT NOT NULL,
 FOREIGN KEY (matchid) REFERENCES dota_match(match_ID) ON UPDATE CASCADE ON DELETE NO ACTION,
-FOREIGN KEY (gamerid) REFERENCES dota_gamer(gamer_ID) ON UPDATE CASCADE ON DELETE NO ACTION,
-FOREIGN KEY (tournamentid) REFERENCES dota_tournament(tournament_ID) ON UPDATE CASCADE ON DELETE NO ACTION
+FOREIGN KEY (gamerid) REFERENCES dota_gamer(gamer_ID) ON UPDATE CASCADE ON DELETE NO ACTION
 );
+
+CREATE TABLE dota_tournament_match(
+Tournamentid INT NOT NULL,
+Matchid INT PRIMARY KEY NOT NULL,
+FOREIGN KEY (Matchid) REFERENCES dota_match(match_ID) ON UPDATE CASCADE ON DELETE NO ACTION,
+FOREIGN KEY (Tournamentid) REFERENCES dota_tournament(Tournament_ID) ON UPDATE CASCADE ON DELETE NO ACTION
+)
+

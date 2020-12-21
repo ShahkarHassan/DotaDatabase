@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from .models import DotaTournament
+from django.contrib.auth.decorators import login_required
 # Create your views here.
-from DotaSite.models import DotaUser, DotaPremiumuser ,DotaMmr, DotaMatch, DotaTournament , DotaGamer,DotaGamerMatchTournament
-
+from DotaSite.models import DotaUser, DotaPremiumuser ,DotaMmr, DotaMatch, DotaTournament , DotaGamer,DotaGamerMatch,DotaTournamentMatch
+@login_required
 def index(request):
     """View function for home page of site."""
 
@@ -29,7 +30,7 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 from django.views import generic
-
+@login_required
 def listtournament(request):
  
     alltournaments= DotaTournament.objects.all()
@@ -38,15 +39,14 @@ def listtournament(request):
 
         
     return render(request, 'listtournament.html', context=context)
-
-def listgamer(request):
+@login_required
+def listgamermmr(request):
  
-    allgamers= DotaGamer.objects.all()
-    
-    context= {'allgamers': allgamers}
+    allmmrs = DotaMmr.objects.select_related('mmr')
+    context= {'allmmrs':allmmrs}
 
         
-    return render(request, 'listgamer.html', context=context)
+    return render(request, 'listgamermmr.html', context=context)
 
 def listmatch(request):
  

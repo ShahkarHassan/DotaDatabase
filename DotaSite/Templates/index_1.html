@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Dota Database</h1>
+  <p>Welcome to DotaDatabase, a website developed by <em>Shahkar Ul Hassan</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The DotaDatabase has the following record counts:</p>
+  <ul>
+    <li><strong>Gamers:</strong> {{ num_gamers }}</li>
+    <li><strong>PremiumUsers:</strong> {{ num_PremiumUser }}</li>
+    <li><strong>Matches:</strong> {{ num_matches }}</li>
+    <li><strong>Tournaments:</strong> {{ num_tournaments }}</li>
+  </ul>
+  <p>You have visited this page {{ num_visits }} time{% if num_visits > 1 %}s{% endif %}.</p>
+{% endblock %}

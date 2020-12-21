@@ -8,7 +8,6 @@
 from django.db import models
 
 
-
 class DotaAdmin(models.Model):
     admin = models.ForeignKey('DotaUser', models.DO_NOTHING, primary_key=True)
     admin_registration_number = models.CharField(unique=True, max_length=20)
@@ -25,21 +24,12 @@ class DotaGamer(models.Model):
     class Meta:
         
         db_table = 'dota_gamer'
+        
 
 
-class DotaGamerMatchTournament(models.Model):
+class DotaGamerMatch(models.Model):
     matchid = models.ForeignKey('DotaMatch', models.DO_NOTHING, db_column='matchid', primary_key=True)
     gamerid = models.ForeignKey(DotaGamer, models.DO_NOTHING, db_column='gamerid')
-    tournamentid = models.ForeignKey('DotaTournament', models.DO_NOTHING, db_column='tournamentid', blank=True, null=True)
-
-    class Meta:
-        
-        db_table = 'dota_gamer_match_tournament'
-
-
-class DotaMatch(models.Model):
-    match_id = models.IntegerField(db_column='match_ID', primary_key=True)  # Field name made lowercase.
-    match_status = models.CharField(db_column='match_Status', max_length=15)  # Field name made lowercase.
     match_gpm = models.IntegerField(db_column='match_GPM')  # Field name made lowercase.
     match_kills = models.IntegerField(db_column='match_Kills')  # Field name made lowercase.
     match_xpm = models.IntegerField(db_column='match_XPM')  # Field name made lowercase.
@@ -47,7 +37,17 @@ class DotaMatch(models.Model):
     match_assist = models.IntegerField()
 
     class Meta:
-        
+      
+        db_table = 'dota_gamer_match'
+
+
+class DotaMatch(models.Model):
+    match_id = models.IntegerField(db_column='match_ID', primary_key=True)  # Field name made lowercase.
+    match_status = models.CharField(db_column='match_Status', max_length=15)  # Field name made lowercase.
+    match_duration = models.CharField(db_column='match_Duration', max_length=50)  # Field name made lowercase.
+
+    class Meta:
+      
         db_table = 'dota_match'
 
 
@@ -67,7 +67,7 @@ class DotaPremiumuser(models.Model):
     premiumuser_registrationexpirydate = models.CharField(db_column='premiumuser_RegistrationExpiryDate', max_length=30)  # Field name made lowercase.
 
     class Meta:
-        
+       
         db_table = 'dota_premiumuser'
 
 
@@ -75,11 +75,21 @@ class DotaTournament(models.Model):
     tournament_id = models.IntegerField(db_column='Tournament_ID', primary_key=True)  # Field name made lowercase.
     tournament_name = models.CharField(db_column='Tournament_name', max_length=100)  # Field name made lowercase.
     tournament_starting_timedate = models.DateTimeField(db_column='Tournament_starting_timedate')  # Field name made lowercase.
-    tournament_prize = models.IntegerField(db_column='Tournament_prize', blank=True, null=True)  # Field name made lowercase.
+    tournament_end_timedate = models.DateTimeField(db_column='Tournament_end_timedate')  # Field name made lowercase.
+    tournament_prize = models.CharField(db_column='Tournament_prize', max_length=100)  # Field name made lowercase.
 
     class Meta:
-        
+       
         db_table = 'dota_tournament'
+
+
+class DotaTournamentMatch(models.Model):
+    tournamentid = models.ForeignKey(DotaTournament, models.DO_NOTHING, db_column='Tournamentid')  # Field name made lowercase.
+    matchid = models.ForeignKey(DotaMatch, models.DO_NOTHING, db_column='Matchid', primary_key=True)  # Field name made lowercase.
+
+    class Meta:
+      
+        db_table = 'dota_tournament_match'
 
 
 class DotaUser(models.Model):
@@ -90,4 +100,5 @@ class DotaUser(models.Model):
     user_password = models.CharField(max_length=30)
 
     class Meta:
+      
         db_table = 'dota_user'
