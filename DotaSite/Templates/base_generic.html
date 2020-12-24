@@ -15,13 +15,7 @@
     <div class="row">
       <div class="col-xs-2">
         <li><a href="{% url 'index' %}">Home</a></li>
-        <li><a href="{% url 'listtournament' %}">Tournament</a></li>
-        <li><a href="{% url 'listgamermmr' %}">Gamers</a></li>
-        <li><a href="{% url 'listmatch' %}">Matches</a></li>
-        <li><a href="{% url 'listMMR' %}">MMR</a></li>
-        <li><a href="{% url 'listtam' %}">Tournament And Matches</a></li>
-        <li><a href="{% url 'listuser' %}">Users</a></li>
-        <li><a href="{% url 'listpuser' %}">Premium Users</a></li>
+       
       </div>
       <div class="col-lg-10 ">{% block content %}{% endblock %}</div>
     </div>
@@ -30,12 +24,7 @@
 
     ...
 
-   {% if user.is_authenticated %}
-     <li>User: {{ user.get_username }}</li>
-     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
-   {% else %}
-     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-   {% endif %} 
+
   </ul>
 </body>
 </html>

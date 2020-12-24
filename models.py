@@ -123,7 +123,7 @@ class DotaAdmin(models.Model):
     admin_registration_number = models.CharField(unique=True, max_length=20)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_admin'
 
 
@@ -132,7 +132,7 @@ class DotaGamer(models.Model):
     gamer_ign = models.CharField(max_length=20)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_gamer'
 
 
@@ -148,7 +148,7 @@ class DotaGamerMatch(models.Model):
     match_status = models.CharField(max_length=45)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_gamer_match'
 
 
@@ -158,7 +158,7 @@ class DotaMatch(models.Model):
     match_duration = models.CharField(db_column='match_Duration', max_length=50)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_match'
 
 
@@ -168,7 +168,7 @@ class DotaMmr(models.Model):
     mmr_medal = models.CharField(max_length=30)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_mmr'
 
 
@@ -178,7 +178,7 @@ class DotaPremiumuser(models.Model):
     premiumuser_gamer = models.ForeignKey(DotaGamer, models.DO_NOTHING, db_column='premiumuser_Gamer_ID')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_premiumuser'
 
 
@@ -190,7 +190,7 @@ class DotaTournament(models.Model):
     tournament_prize = models.CharField(db_column='Tournament_prize', max_length=100)  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_tournament'
 
 
@@ -199,7 +199,7 @@ class DotaTournamentMatch(models.Model):
     tournamentid = models.ForeignKey(DotaTournament, models.DO_NOTHING, db_column='Tournamentid')  # Field name made lowercase.
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_tournament_match'
 
 
@@ -211,5 +211,5 @@ class DotaUser(models.Model):
     user_password = models.CharField(max_length=30)
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'dota_user'

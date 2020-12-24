@@ -8,10 +8,7 @@ urlpatterns = [
     path('Tournaments/', views.listtournament , name='listtournament'),
     path('Gamers/', views.listgamermmr , name='listgamermmr'),  
     path('Match/', views.listmatch , name='listmatch'),  
-    path('MMR/', views.listMMR , name='listMMR'), 
-    path('tournamentmatches/', views.listtam , name='listtam'), 
-    path('UserProfile/', views.listuser , name='listuser'),
-    path('PuserProfile/', views.listpuser , name='listpuser'), 
+    path("register/", views.register, name="register")
 ]
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),

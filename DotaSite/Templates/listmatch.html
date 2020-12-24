@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -51,7 +49,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>HomePage</span></a>
+                    <span>Home</span></a>
             </li>
 
             <!-- Divider -->
@@ -71,11 +69,22 @@
                 </div>
             </li>
 
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'listgamermmr' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Gamers</span></a>
+            </li>
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>Matches</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'listtournament' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tournaments</span></a>
             </li>
 
             <!-- Divider -->
@@ -95,10 +104,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Matches</h1>
+                    <p class="mb-4">This Table Contains the Data of Matches played  <a target="_blank"
+                            href="https://datatables.net"></a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -110,34 +118,45 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Match id</th>
+                                            <th>Match ID</th>
+                                            <th>Match Type</th>
+                                            <th>Match Duration</th>
+                                            <th>Player</th>
                                             <th>Match Status</th>
-                                            <th>Match</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Kills</th>
+                                            <th>Death</th>
+                                            <th>Assists</th>
+                                            <th>GPM</th>
+                                            <th>XPM</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Match ID</th>
+                                            <th>Match Type</th>
+                                            <th>Match Duration</th>
+                                            <th>Player</th>
+                                            <th>Match Status</th>
+                                            <th>Kills</th>
+                                            <th>Death</th>
+                                            <th>Assists</th>
+                                            <th>GPM</th>
+                                            <th>XPM</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         {% for match in allmatch %}
                                         <tr>
-                                        <td>{{ match.match_id }}</td>
-                                        <td>{{ match.match_status }}</td>
-                                        <td>{{ match.match_gpm }}</td>
-                                        <td>{{ match.match_xpm }}</td>
+                                        <td>{{ match.matchid.match_id }}</td>
+                                        <td>{{ match.matchid.match_type }}</td>
+                                        <td>{{ match.matchid.match_duration }}</td>
+                                        <td>{{ match.gamerid.gamer_ign }}</td>
+                                        <td>{{ match.match_status}}</td>
                                         <td>{{ match.match_kills }}</td>
                                         <td>{{ match.match_death }}</td>
-                                        <td>{{ match.match_assist }}</td>
+                                        <td>{{ match.match_assist}}</td>
+                                        <td>{{ match.match_gpm }}</td>
+                                        <td>{{ match.match_xpm }}</td>
                                         </tr>
                                         {% endfor %}
                                         

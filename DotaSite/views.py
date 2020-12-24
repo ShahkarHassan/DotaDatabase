@@ -3,7 +3,7 @@ from .models import DotaTournament
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 from DotaSite.models import DotaUser, DotaPremiumuser ,DotaMmr, DotaMatch, DotaTournament , DotaGamer,DotaGamerMatch,DotaTournamentMatch
-@login_required
+
 def index(request):
     """View function for home page of site."""
 
@@ -47,45 +47,30 @@ def listgamermmr(request):
 
         
     return render(request, 'listgamermmr.html', context=context)
-
+@login_required
 def listmatch(request):
  
-    allmatch= DotaMatch.objects.all()
+    allmatch= DotaGamerMatch.objects.prefetch_related('matchid','gamerid')
     
     context= {'allmatch': allmatch}
 
         
     return render(request, 'listmatch.html', context=context)
 
-def listMMR(request):
- 
-    allMMR= DotaMmr.objects.all()
-    
-    context= {'allMMR': allMMR}
+# views.py
+from django.shortcuts import render, redirect
+from .forms import RegisterForm
 
-        
-    return render(request, 'listMMR.html', context=context)
-def listtam(request):
- 
-    alltam= DotaGamerMatchTournament.objects.all()
-    
-    context= {'alltam': alltam}
 
-        
-    return render(request, 'listtam.html', context=context)
-def listuser(request):
- 
-    alluser= DotaUser.objects.all()
-    
-    context= {'alluser': alluser}
+# Create your views here.
+def register(response):
+    if response.method == "POST":
+	    form = RegisterForm(response.POST)
+	    if form.is_valid():
+	        form.save()
 
-        
-    return render(request, 'listuser.html', context=context)
-def listpuser(request):
- 
-    allpuser= DotaPremiumuser.objects.all()
-    
-    context= {'allpuser': allpuser}
+	    return redirect("/")
+    else:
+	    form = RegisterForm()
 
-        
-    return render(request, 'listpuser.html', context=context)
+    return render(response, "register.html", {"form":form})
