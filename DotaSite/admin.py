@@ -1,6 +1,7 @@
 from django.contrib import admin
 from.models import DotaUser,DotaAdmin,DotaGamer,DotaPremiumuser,DotaMmr,DotaTournament,DotaGamerMatch,DotaMatch,DotaTournamentMatch
 # Register your models here.
+
 admin.site.register(DotaUser)
 admin.site.register(DotaAdmin)
 admin.site.register(DotaGamer)

@@ -56,7 +56,7 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            
+
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{% url 'register' %}"data-toggle="collapse" data-target="#collapseUtilities"
@@ -162,14 +162,14 @@
                         </div>
                     </form>
 
-                   
+
                         <!-- Nav Item - User Information -->
                         {% if user.is_authenticated %}
                         <li>User: {{ user.get_username }}</li>
                         <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
                       {% else %}
                         <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
-                      {% endif %} 
+                      {% endif %}
                             </div>
 
 
@@ -300,16 +300,16 @@
                                         - Added four new ascension modifiers: Glutton, Clumsy, Glimmer, Meteoric<br>
                                         - Bristleback now sells a variety of minor upgrade shards for the chosen heroes in the game<br>
                                         - The rate of earning Battle Points during the game has been increased<br>
-                                        
+
                                         Aghanim's Trials<br>
                                         - The next Trial will be on the Grand Magus ascension level<br>
                                         <i class="fas fa-circle text-primary"></i>7.29<br> General <br>
-                                        NEW HERO : SORLA KHAN RELEASING. 
+                                        NEW HERO : SORLA KHAN RELEASING.
                                     </p>
 
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Soon 
+                                            <i class="fas fa-circle text-primary"></i> Soon
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-circle text-success"></i> Current
@@ -334,8 +334,8 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Total Worldwide plays Average Ranking</h6>
                                 </div>
-                                
-                                
+
+
                                 <div class="card-body">
                                     <h4 class="small font-weight-bold">Herald <span
                                         class="float-right">321325</span></h4>
@@ -355,7 +355,7 @@
                                         <div class="progress-bar bg-info" role="progressbar" style="width: 64%"
                                             aria-valuenow="14" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    
+
                                     <h4 class="small font-weight-bold">Archon <span
                                         class="float-right">641363</span></h4>
                                 <div class="progress mb-4">
@@ -368,7 +368,7 @@
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 56%"
                                             aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    
+
                                     <h4 class="small font-weight-bold">Ancient <span
                                         class="float-right">123423</span></h4>
                                 <div class="progress mb-4">
@@ -403,7 +403,7 @@
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-success text-white shadow">
                                         <div class="card-body">
-                                            Guardian 
+                                            Guardian
                                             <div class="text-white-50 small"></div> Learnt basics
                                         </div>
                                     </div>
@@ -470,7 +470,7 @@
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img src="{% static 'img/2.jpg' %}" alt="" width="470" height="400">
- 
+
                             </div>
 
                             <!-- Approach -->
@@ -491,7 +491,17 @@
 
                 </div>
                 <!-- /.container-fluid -->
-
+<div class="columns">
+  <ul class="price">
+    <li class="header">Basic</li>
+    <li class="grey">$ 9.99 / year</li>
+    <li>10GB Storage</li>
+    <li>10 Emails</li>
+    <li>10 Domains</li>
+    <li>1GB Bandwidth</li>
+    <li class="grey"><a href="#" class="button">Sign Up</a></li>
+  </ul>
+</div>
             </div>
             <!-- End of Main Content -->
 

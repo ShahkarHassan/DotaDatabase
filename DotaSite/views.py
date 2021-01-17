@@ -32,30 +32,39 @@ def index(request):
 from django.views import generic
 @login_required
 def listtournament(request):
- 
+
     alltournaments= DotaTournament.objects.all()
-    
+
     context= {'alltournaments': alltournaments}
 
-        
+
     return render(request, 'listtournament.html', context=context)
 @login_required
 def listgamermmr(request):
- 
+
     allmmrs = DotaMmr.objects.select_related('mmr')
     context= {'allmmrs':allmmrs}
 
-        
+
     return render(request, 'listgamermmr.html', context=context)
 @login_required
 def listmatch(request):
- 
-    allmatch= DotaGamerMatch.objects.prefetch_related('matchid','gamerid')
-    
-    context= {'allmatch': allmatch}
 
-        
-    return render(request, 'listmatch.html', context=context)
+    allmatch= DotaGamerMatch.objects.prefetch_related('matchid','gamerid')
+    premium = DotaPremiumuser.objects.all()
+
+
+    q=False
+    for wq in premium:
+        if request.user.username == wq.premiumuser_gamer_id:
+            q=True
+        else:
+            q=False
+    context= {'allmatch': allmatch,
+        'premium': premium,
+        'q':q}
+
+    return render(request ,'listmatch.html', context=context)
 
 # views.py
 from django.shortcuts import render, redirect

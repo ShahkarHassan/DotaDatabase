@@ -38,10 +38,11 @@ class AuthPermission(models.Model):
 
 
 class AuthUser(models.Model):
+
     password = models.CharField(max_length=128)
     last_login = models.DateTimeField(blank=True, null=True)
     is_superuser = models.IntegerField()
-    username = models.CharField(unique=True, max_length=150)
+    username = models.CharField(unique=True, max_length=150 , primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=150)
     email = models.CharField(max_length=254)
@@ -144,7 +145,7 @@ class DotaGamerMatch(models.Model):
     match_death = models.IntegerField()
     match_assist = models.IntegerField()
     gamerid = models.ForeignKey(DotaGamer, models.DO_NOTHING, db_column='gamerid')
-    dota_gamer_matchcol = models.CharField(max_length=45, blank=True, null=True)
+    #dota_gamer_matchcol = models.CharField(max_length=45, blank=True, null=True)
     match_status = models.CharField(max_length=45)
 
     class Meta:
@@ -175,7 +176,7 @@ class DotaMmr(models.Model):
 class DotaPremiumuser(models.Model):
     premiumuser_registration_number = models.BigIntegerField(db_column='premiumuser_Registration_Number', primary_key=True)  # Field name made lowercase.
     premiumuser_registrationexpirydate = models.CharField(db_column='premiumuser_RegistrationExpiryDate', max_length=30)  # Field name made lowercase.
-    premiumuser_gamer = models.ForeignKey(DotaGamer, models.DO_NOTHING, db_column='premiumuser_Gamer_ID')  # Field name made lowercase.
+    premiumuser_gamer = models.ForeignKey(AuthUser, models.DO_NOTHING, db_column='premiumuser_Gamer_ID')  # Field name made lowercase.
 
     class Meta:
         managed = True
